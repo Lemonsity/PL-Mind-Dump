@@ -101,3 +101,47 @@ We use Typed Racker here. Some functions may not behave as expected
     )
   )
 )
+
+(: tup+ (-> (Listof Number) (Listof Number) (Listof Number)))
+(define tup+
+  (λ (tup1 tup2)
+    (cond
+      [(null? tup1) tup2]
+      [(null? tup2) tup1]
+      [else (cons (o+ (car tup1) (car tup2)) (tup+ (cdr tup1) (cdr tup2)))]
+    )
+  )
+)
+
+(: o< (-> Number Number Boolean))
+(define o<
+  (λ (a b)
+    (cond
+      [(zero? b) #f]
+      [(zero? a) #t]
+      [else (o< (sub1 a) (sub1 b))]
+    )
+  )
+)
+
+(: o> (-> Number Number Boolean))
+(define o>
+  (λ (a b)
+    (cond
+      [(zero? a) #f]
+      [(zero? b) #t]
+      [else (o> (sub1 a) (sub1 b))]
+    )
+  )
+)
+
+(: o= (-> Number Number Boolean))
+(define o=
+  (λ (a b)
+    (cond
+      [(o< a b) #f]
+      [(o> a b) #f]
+      [else #t]
+    )
+  )
+)
