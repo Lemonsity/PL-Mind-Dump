@@ -3,7 +3,7 @@
 #|
 The Little Schemer Template
 
-Here we implement many functions from The Little Schemer by D Friedman and M Felleisen
+Here we implement some functions from The Little Schemer by D Friedman and M Felleisen
 
 Note The Little Schemer's target languages are LISP and Scheme
 We use Typed Racker here. Some functions may not behave as expected
