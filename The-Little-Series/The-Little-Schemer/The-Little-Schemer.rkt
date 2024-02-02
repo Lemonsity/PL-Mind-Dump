@@ -57,7 +57,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o+ (-> Number Number Number))
+(: o+ (-> Integer Integer Integer))
 (define o+
   (λ (n m)
     (cond
@@ -69,7 +69,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o- (-> Number Number Number))
+(: o- (-> Integer Integer Integer))
 (define o-
   (λ (n m)
     (cond
@@ -79,7 +79,17 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: addtup (-> (Listof Number) Number))
+(: o* (-> Integer Integer Integer))
+(define o*
+  (λ (n m)
+    (cond
+      [(zero? m) 1]
+      [else (o+ n (o* n (sub1 m)))]
+    )
+  )
+)
+
+(: addtup (-> (Listof Integer) Integer))
 (define addtup
   (λ (tup)
     (cond
@@ -89,7 +99,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: rempick (-> Number (Listof Symbol) (Listof Symbol)))
+(: rempick (-> Integer (Listof Symbol) (Listof Symbol)))
 (define rempick
   (λ (n lat)
     (cond
@@ -102,7 +112,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: tup+ (-> (Listof Number) (Listof Number) (Listof Number)))
+(: tup+ (-> (Listof Integer) (Listof Integer) (Listof Integer)))
 (define tup+
   (λ (tup1 tup2)
     (cond
@@ -113,7 +123,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o< (-> Number Number Boolean))
+(: o< (-> Integer Integer Boolean))
 (define o<
   (λ (a b)
     (cond
@@ -124,7 +134,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o> (-> Number Number Boolean))
+(: o> (-> Integer Integer Boolean))
 (define o>
   (λ (a b)
     (cond
@@ -135,13 +145,59 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o= (-> Number Number Boolean))
+(: o= (-> Integer Integer Boolean))
 (define o=
   (λ (a b)
     (cond
       [(o< a b) #f]
       [(o> a b) #f]
       [else #t]
+    )
+  )
+)
+
+; Technically this function only takes positive intergers as input
+; We using else defined o- only because we are following the textbook
+(: o/ (-> Integer Integer Integer))
+(define o/
+  (λ (n m)
+    (cond
+      [(o< n m) 0]
+      [else (add1 (o/ (o- n m) m))]
+    )
+  )
+)
+
+(: o^ (-> Integer Integer Integer))
+(define o^
+  (λ (a b)
+    (cond
+      [(zero? b) 1]
+      [else (o* a (o^ a (sub1 b)))]
+    )
+  )
+)
+
+(: my-length (All (a) (-> (Listof a) Integer)))
+(define my-length
+  (λ (l)
+    (cond
+      [(empty? l) 0]
+      [else (add1 (my-length (cdr l)))]
+    )
+  )
+)
+
+#|
+An interesting thought. What would happen when we start to incorporate context into typing judgement?
+In some langauges, 
+|#
+(: pick (-> Positive-Index (Listof Symbol) Symbol))
+(define pick
+  (λ (n lat)
+    (cond
+      [(zero? (sub1 n)) (car lat)]
+      [else (pick (sub1 n) (cdr lat))]
     )
   )
 )

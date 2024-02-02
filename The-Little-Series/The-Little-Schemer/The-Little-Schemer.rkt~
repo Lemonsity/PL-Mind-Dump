@@ -3,7 +3,7 @@
 #|
 The Little Schemer Template
 
-Here we implement many functions from The Little Schemer by D Friedman and M Felleisen
+Here we implement some functions from The Little Schemer by D Friedman and M Felleisen
 
 Note The Little Schemer's target languages are LISP and Scheme
 We use Typed Racker here. Some functions may not behave as expected
@@ -94,7 +94,54 @@ We use Typed Racker here. Some functions may not behave as expected
   (λ (n lat)
     (cond
       [(zero? (sub1 n)) (cdr lat)]
-      [else (cons (car lat) (rempick (sub1 n) (cdr lat)))]
+      [else
+       (cons
+        (car lat)
+        (rempick (sub1 n) (cdr lat)))]
+    )
+  )
+)
+
+(: tup+ (-> (Listof Number) (Listof Number) (Listof Number)))
+(define tup+
+  (λ (tup1 tup2)
+    (cond
+      [(null? tup1) tup2]
+      [(null? tup2) tup1]
+      [else (cons (o+ (car tup1) (car tup2)) (tup+ (cdr tup1) (cdr tup2)))]
+    )
+  )
+)
+
+(: o< (-> Number Number Boolean))
+(define o<
+  (λ (a b)
+    (cond
+      [(zero? b) #f]
+      [(zero? a) #t]
+      [else (o< (sub1 a) (sub1 b))]
+    )
+  )
+)
+
+(: o> (-> Number Number Boolean))
+(define o>
+  (λ (a b)
+    (cond
+      [(zero? a) #f]
+      [(zero? b) #t]
+      [else (o> (sub1 a) (sub1 b))]
+    )
+  )
+)
+
+(: o= (-> Number Number Boolean))
+(define o=
+  (λ (a b)
+    (cond
+      [(o< a b) #f]
+      [(o> a b) #f]
+      [else #t]
     )
   )
 )
