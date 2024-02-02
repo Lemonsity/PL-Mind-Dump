@@ -192,7 +192,7 @@ We use Typed Racker here. Some functions may not behave as expected
 An interesting thought. What would happen when we start to incorporate context into typing judgement?
 In some langauges, 
 |#
-(: pick (-> Positive-Index (Listof Symbol) Symbol))
+(: pick (-> Integer (Listof Symbol) Symbol))
 (define pick
   (λ (n lat)
     (cond
