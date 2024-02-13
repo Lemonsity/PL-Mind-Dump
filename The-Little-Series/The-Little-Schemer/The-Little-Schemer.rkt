@@ -1,4 +1,4 @@
-#lang typed/racket
+#lang racket
 
 #|
 The Little Schemer Template
@@ -9,12 +9,12 @@ Note The Little Schemer's target languages are LISP and Scheme
 We use Typed Racker here. Some functions may not behave as expected
 |#
 
-(: atom? (-> Any Boolean))
+;(: atom? (-> Any Boolean))
 (define atom?
   (λ (x)
     (and (not (pair? x)) (not (null? x)))))
 
-(: lat? (-> (Listof Any) Boolean))
+;(: lat? (-> (Listof Any) Boolean))
 (define lat?
   (λ (list)
     (cond
@@ -25,7 +25,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: remove-member (-> Symbol (Listof Symbol) (Listof Symbol)))
+;(: remove-member (-> Symbol (Listof Symbol) (Listof Symbol)))
 (define remove-member
   (λ (a l)
     (cond
@@ -36,7 +36,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: firsts (-> (Listof (Listof Symbol)) (Listof Symbol)))
+;(: firsts (-> (Listof (Listof Symbol)) (Listof Symbol)))
 (define firsts
   (λ (lat)
     (cond
@@ -46,7 +46,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: insertR (-> Symbol Symbol (Listof Symbol) (Listof Symbol)))
+;(: insertR (-> Symbol Symbol (Listof Symbol) (Listof Symbol)))
 (define insertR
   (λ (new old lat)
     (cond
@@ -57,7 +57,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o+ (-> Integer Integer Integer))
+;(: o+ (-> Integer Integer Integer))
 (define o+
   (λ (n m)
     (cond
@@ -69,7 +69,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o- (-> Integer Integer Integer))
+;(: o- (-> Integer Integer Integer))
 (define o-
   (λ (n m)
     (cond
@@ -79,7 +79,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o* (-> Integer Integer Integer))
+;(: o* (-> Integer Integer Integer))
 (define o*
   (λ (n m)
     (cond
@@ -89,7 +89,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: addtup (-> (Listof Integer) Integer))
+;(: addtup (-> (Listof Integer) Integer))
 (define addtup
   (λ (tup)
     (cond
@@ -99,7 +99,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: rempick (-> Integer (Listof Symbol) (Listof Symbol)))
+;(: rempick (-> Integer (Listof Symbol) (Listof Symbol)))
 (define rempick
   (λ (n lat)
     (cond
@@ -112,7 +112,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: tup+ (-> (Listof Integer) (Listof Integer) (Listof Integer)))
+;(: tup+ (-> (Listof Integer) (Listof Integer) (Listof Integer)))
 (define tup+
   (λ (tup1 tup2)
     (cond
@@ -123,7 +123,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o< (-> Integer Integer Boolean))
+;(: o< (-> Integer Integer Boolean))
 (define o<
   (λ (a b)
     (cond
@@ -134,7 +134,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o> (-> Integer Integer Boolean))
+;(: o> (-> Integer Integer Boolean))
 (define o>
   (λ (a b)
     (cond
@@ -145,7 +145,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o= (-> Integer Integer Boolean))
+;(: o= (-> Integer Integer Boolean))
 (define o=
   (λ (a b)
     (cond
@@ -158,7 +158,7 @@ We use Typed Racker here. Some functions may not behave as expected
 
 ; Technically this function only takes positive intergers as input
 ; We using else defined o- only because we are following the textbook
-(: o/ (-> Integer Integer Integer))
+;(: o/ (-> Integer Integer Integer))
 (define o/
   (λ (n m)
     (cond
@@ -168,7 +168,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: o^ (-> Integer Integer Integer))
+;(: o^ (-> Integer Integer Integer))
 (define o^
   (λ (a b)
     (cond
@@ -178,7 +178,7 @@ We use Typed Racker here. Some functions may not behave as expected
   )
 )
 
-(: my-length (All (a) (-> (Listof a) Integer)))
+;(: my-length (All (a) (-> (Listof a) Integer)))
 (define my-length
   (λ (l)
     (cond
@@ -192,7 +192,7 @@ We use Typed Racker here. Some functions may not behave as expected
 An interesting thought. What would happen when we start to incorporate context into typing judgement?
 In some langauges, 
 |#
-(: pick (-> Integer (Listof Symbol) Symbol))
+;(: pick (-> Integer (Listof Symbol) Symbol))
 (define pick
   (λ (n lat)
     (cond
@@ -202,7 +202,7 @@ In some langauges,
   )
 )
 
-(: no-nums (-> (Listof Any) (Listof Any)))
+;(: no-nums (-> (Listof Any) (Listof Any)))
 (define no-nums
   (λ (lat)
     (cond
@@ -213,7 +213,7 @@ In some langauges,
   )
 )
 
-(: all-nums (-> (Listof Any) (Listof Any)))
+;(: all-nums (-> (Listof Any) (Listof Any)))
 (define all-nums
   (λ (lat)
     (cond
@@ -224,7 +224,7 @@ In some langauges,
   )
 )
 
-(: eqan? (-> (U Integer Symbol) (U Integer Symbol) Boolean))
+;(: eqan? (-> (U Integer Symbol) (U Integer Symbol) Boolean))
 (define eqan?
   (λ (a1 a2)
     (cond
@@ -235,13 +235,105 @@ In some langauges,
   )
 )
 
-(: occur (-> Symbol (Listof Symbol) Integer))
+;(: occur (-> Symbol (Listof Symbol) Integer))
 (define occur
   (λ (a lat)
     (cond
       [(null? lat) 0]
       [(eq? a (car lat)) (add1 (occur a (cdr lat)))]
       [else (occur a (cdr lat))]
+    )
+  )
+)
+
+;(: rember* Any)
+(define rember*
+  (λ (a l)
+    (cond
+      [(empty? l) '()]
+      [(list? (car l)) (cons (rember* a (car l)) (rember* a (cdr l)))]
+      [(eq? (car l) a) (rember* a (cdr l))]
+      [else (cons (car l) (rember* a (cdr l)))]
+    )
+  )
+)
+
+(define insertR*
+  (λ (new old l)
+    (cond
+      [(empty? l) '()]
+      [(list? l) (cons (insertR* new old (car l)) (insertR* new old (cdr l)))]
+      [(eq? old (car l)) (cons (car l) (cons new (insertR* new old (cdr l))))]
+      [else (cons (car l) (insertR* new old (cdr l)))]
+    )
+  )
+)
+
+(define occur*
+  (λ (a l)
+    (cond
+      [(empty? l) 0]
+      [(atom? (car l))
+       (cond
+         [(eq? a (car l)) (add1 (occur* a (cdr l)))]
+         [else (occur* a (cdr l))]
+       )
+      ]
+      [else (o+ (occur* a (car l)) (occur* a (cdr l)))]
+    )
+  )
+)
+
+(define subst*
+  (λ (new old l)
+    (cond
+      [(empty? l) '()]
+      [(atom? (car l))
+       (cond
+         [(eq? old (car l)) (cons new (subst* new old (cdr l)))]
+         [else (cons (car l) (subst* new old (cdr l)))]
+       )
+      ]
+      [else (cons (subst* new old (car l)) (subst* new old (cdr l)))]
+    )
+  )
+)
+
+(define member*
+  (λ (a l)
+    (cond
+      [(null? l) #f]
+      [(atom? (car l))
+       (cond
+         [(eq? a (car l)) #t]
+         [else (member* a (cdr l))]
+       )
+      ]
+      [else (or (member* a (car l)) (member* a (cdr l)))]
+    )
+  )
+)
+
+(define leftmost
+  (λ (l)
+    (cond
+      [(atom? (car l)) (car l)]
+      [(list? (car l)) (leftmost (car l))]
+    )
+  )
+)
+
+(define eqlist?
+  (λ (l1 l2)
+    (cond
+      [(and (null? l1) (null? l2)) #t]
+      [(or (not (null? l1)) (not (null? l2))) #f]
+      [(and (atom? (car l1)) (atom? (car l2)))
+       (and (eq? (car l1) (car l2)) (eqlist? (cdr l1) (cdr l2)))]
+      [(or (not (atom? (car l1)) (atom? (car l2)))) #f]
+      [(and (list? (car l1)) (list? (car l2)))
+       (and (eqlist? (car l1) (car l2)) (eqlist? (cdr l1) (cdr l2)))]
+      [else #f]
     )
   )
 )
