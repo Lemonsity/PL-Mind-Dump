@@ -182,7 +182,7 @@ We use Typed Racker here. Some functions may not behave as expected
 (define my-length
   (λ (l)
     (cond
-      [(empty? l) 0]
+      [(null? l) 0]
       [else (add1 (my-length (cdr l)))]
     )
   )
@@ -198,6 +198,50 @@ In some langauges,
     (cond
       [(zero? (sub1 n)) (car lat)]
       [else (pick (sub1 n) (cdr lat))]
+    )
+  )
+)
+
+(: no-nums (-> (Listof Any) (Listof Any)))
+(define no-nums
+  (λ (lat)
+    (cond
+      [(null? lat) '()]
+      [(number? (car lat)) (cdr lat)]
+      [else (cons (car lat) (no-nums (cdr lat)))]
+    )
+  )
+)
+
+(: all-nums (-> (Listof Any) (Listof Any)))
+(define all-nums
+  (λ (lat)
+    (cond
+      [(null? lat) '()]
+      [(number? (car lat)) (cons (car lat) (all-nums (cdr lat)))]
+      [else (all-nums (cdr lat))]
+    )
+  )
+)
+
+(: eqan? (-> (U Integer Symbol) (U Integer Symbol) Boolean))
+(define eqan?
+  (λ (a1 a2)
+    (cond
+      [(and (number? a1) (number? a2)) (o= a1 a2)]
+      [(or (number? a1) (number? a2)) #f]
+      [else (eq? a1 a2)]
+    )
+  )
+)
+
+(: occur (-> Symbol (Listof Symbol) Integer))
+(define occur
+  (λ (a lat)
+    (cond
+      [(null? lat) 0]
+      [(eq? a (car lat)) (add1 (occur a (cdr lat)))]
+      [else (occur a (cdr lat))]
     )
   )
 )
