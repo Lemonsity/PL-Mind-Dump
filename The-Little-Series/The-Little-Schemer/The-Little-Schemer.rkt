@@ -323,6 +323,12 @@ In some langauges,
   )
 )
 
+#|
+The little schemer reduces this function significantly by making mutual recursive call
+I choose to not do it here, because I think it hides the steps it taks to get there
+
+One can simplify with mutual recursive call to equal? that accepts any kind of input
+|#
 (define eqlist?
   (λ (l1 l2)
     (cond
@@ -337,3 +343,20 @@ In some langauges,
     )
   )
 )
+
+
+; ================================= 6. Shadow ================================= 
+(define numbered?
+  (λ (aexp)
+    (cond
+      [(atom? aexp) (number? aexp)]
+      [else (and
+             (numbered? (car aexp))
+             (numbered? (caddr aexp)) ; (caddr x) = (car (cdr (cdr x)))
+             ; One can potentially check if the operator is correct here
+            )
+      ]
+    )
+  )
+)
+      
